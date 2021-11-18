@@ -1,6 +1,6 @@
 ## Problem Set 2: Non-Linear Methods
 
-**Handout Date:** 2021-11-15
+**Handout Date:** 2021-11-15  
 **Deadline:** 2021-12-05
 
 You may answer this problem set in groups of up to three students. Please state your names and matriculation numbers in the `YAML` header before submission (under the `author` field).
