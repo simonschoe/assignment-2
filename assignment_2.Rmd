@@ -176,22 +176,26 @@ What is the predicted income of a person with `age` equal to 37 for each piecewi
 Third, explore the relationship between `wage` and `age` using cubic regression splines. Again, a simple modification of the preprocessing recipe allows us to transform the `age` predictor accordingly.
 
 ```{r}
-spline10_rec <- lin_rec %>% step_bs(age, degree = 3, deg_free = 5) 
-spline15_rec <- lin_rec %>% step_bs(age, degree = 3, deg_free = 15) 
-spline20_rec <- lin_rec %>% step_bs(age, degree = 3, deg_free = 25) 
-spline25_rec <- lin_rec %>% step_bs(age, degree = 3, deg_free = 35)
+spline5_rec <- lin_rec %>%
+  step_bs(age, degree = 3, deg_free = 5, options = list(intercept = T)) 
+spline15_rec <- lin_rec %>%
+  step_bs(age, degree = 3, deg_free = 15, options = list(intercept = T)) 
+spline25_rec <- lin_rec %>%
+  step_bs(age, degree = 3, deg_free = 25, options = list(intercept = T)) 
+spline35_rec <- lin_rec %>%
+  step_bs(age, degree = 3, deg_free = 35, options = list(intercept = T))
 ```
 
 ```{r}
-spline10_wf_fit <- workflow(spline10_rec, lm_spec) %>% fit(data = Wage)
+spline5_wf_fit <- workflow(spline5_rec, lm_spec) %>% fit(data = Wage)
 spline15_wf_fit <- workflow(spline15_rec, lm_spec) %>% fit(data = Wage)
-spline20_wf_fit <- workflow(spline20_rec, lm_spec) %>% fit(data = Wage)
 spline25_wf_fit <- workflow(spline25_rec, lm_spec) %>% fit(data = Wage)
+spline35_wf_fit <- workflow(spline35_rec, lm_spec) %>% fit(data = Wage)
 ```
 
-```{r, fig.width=8, fig.asp=0.618, fig.align='center'}
-(plot_model(spline10_wf_fit, Wage) + plot_model(spline15_wf_fit, Wage)) /
-(plot_model(spline20_wf_fit, Wage) + plot_model(spline25_wf_fit, Wage)) 
+```{r, fig.width=8, fig.asp=0.618, fig.align='center', warning=F}
+(plot_model(spline5_wf_fit, Wage) + plot_model(spline15_wf_fit, Wage)) /
+(plot_model(spline25_wf_fit, Wage) + plot_model(spline35_wf_fit, Wage)) 
 ```
 
 How many knots are produced by the four different spline regressions? To answer this question, reflect upon the number of coefficients (i.e. degrees of freedom) of a single cubic function vis-à-vis the degrees of freedom of the specified spline regressions. Finally, construct and plot a polynomial regression with $d=15$ (by recycling the relevant code snippets above) and explain how a cubic spline regression with 15 degrees of freedom differs from a polynomial regression with $d=15$.
