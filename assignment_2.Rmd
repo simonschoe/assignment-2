@@ -393,7 +393,7 @@ rf_grid <-
 rf_wf_fit <-
   tune_grid(
     rf_wf, folds_cs,
-    grid = grid, metrics = metric_set(rmse),
+    grid = rf_grid, metrics = metric_set(rmse),
     control = control_grid(verbose = T)
   )
 
@@ -488,7 +488,7 @@ In this task we know the true Bayes decision boundary since the data was simulat
 
 ### Task 3.3
 
-The following code fits two different support vector machine (SVM) models, `svm_lin_spec` and `svm_rbf_spec`, using the `kernlab` package as underlying engine for `parnsip`. The optimale hyperparameters are determined via 5-fold CV.
+The following code fits two different support vector machine (SVM) models, `svm_lin_spec` and `svm_rbf_spec`, using the `kernlab` package as underlying engine for `parnsip`. The optimal hyperparameters are determined via 5-fold CV.
 
 `svm_lin_spec`:
 
