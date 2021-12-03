@@ -243,7 +243,7 @@ Carseats %>%
 
 ### Task 2.1
 
-Split the data set into a training set and a test set using `set.seed(2021)`, the `rsample` package and a train-test-ratio of 3:1. Extract the training and test samples and write them to a variable called `train_set_cs` and `test_set_cs`, respectively.
+Split the data set into a training set and a test set using `set.seed(2021)`, the `rsample` package and a train-test-ratio of 3:1. Call the resulting `rsample` object `split_cs`. Extract the training and test samples and write them to a variable called `train_set_cs` and `test_set_cs`, respectively.
 
 
 ### Task 2.2
